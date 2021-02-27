@@ -1,25 +1,27 @@
-%define		commit	6b9bc53302ef
-
 Summary:	The GLib Ncurses Toolkit
 Name:		libgnt
-Version:	2.14.0
+Version:	2.14.1
 Release:	1
-License:	GPL v2
+License:	GPL v2+
 Group:		Libraries
-Source0:	https://bitbucket.org/pidgin/libgnt/get/v%{version}.tar.bz2
-# Source0-md5:	f0be976b9e89e8990f5083100fa0513c
-URL:		https://bitbucket.org/pidgin/libgnt/
+Source0:	http://downloads.sourceforge.net/pidgin/%{name}-%{version}.tar.xz
+# Source0-md5:	bd10a0c397e780f1432d72bdb2d8a61f
+URL:		https://keep.imfreedom.org/libgnt/libgnt
 BuildRequires:	glib2-devel >= 1:2.16.0
 BuildRequires:	gtk-doc
-BuildRequires:	libxml2-devel >= 2.6.0
-BuildRequires:	meson >= 0.37.0
+BuildRequires:	libxml2-devel >= 1:2.6.0
+BuildRequires:	meson >= 0.41.0
 BuildRequires:	ncurses-devel
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.727
+BuildRequires:	python-devel >= 1:2.7
+BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires:	glib2 >= 1:2.16.0
-Requires:	libxml2 >= 2.6.0
+Requires:	libxml2 >= 1:2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,18 +59,19 @@ BuildArch:	noarch
 GNT API documentation.
 
 %prep
-%setup -q -n pidgin-libgnt-%{commit}
+%setup -q
+
+%{__sed} -i -e 's/ = library(/ = shared_library(/' wms/meson.build
 
 %build
 %meson build
+
 %ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
-
-rm $RPM_BUILD_ROOT%{_libdir}/gnt/*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -78,7 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README.md
+%doc COPYRIGHT ChangeLog README.md
 %attr(755,root,root) %{_libdir}/libgnt.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnt.so.0
 %dir %{_libdir}/gnt
@@ -88,8 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnt.so
-%dir %{_includedir}/gnt
-%{_includedir}/gnt/*.h
+%{_includedir}/gnt
 %{_pkgconfigdir}/gnt.pc
 
 %files static
