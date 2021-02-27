@@ -1,4 +1,5 @@
 Summary:	The GLib Ncurses Toolkit
+Summary(pl.UTF-8):	Biblioteka GLib Ncurses Toolkit
 Name:		libgnt
 Version:	2.14.1
 Release:	1
@@ -32,30 +33,51 @@ interfaces in a fast and easy way. It is based on GLib and ncurses.
 It was born out of the console-based UI, Finch, for the libpurple
 project, but has now been split into its own independent repository.
 
+%description -l pl.UTF-8
+GNT to biblioteka narzędziowa ncurses do tworzenia graficznych
+interfejsów użytkownika w trybie tekstowym w szybki i łatwy sposób.
+Jeset oparta na bibliotekach GLib i ncurses.
+
+Biblioteka powstała z konsolowego interfejsu użytkownika Finch,
+stworzonego dla projektu libpurple, ale została wydzielona do
+samodzielnego repozytorium.
+
 %package devel
 Summary:	Header files for GNT library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GNT
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for GNT library.
 
+%description devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki GNT.
+
 %package static
 Summary:	Static GNT library
+Summary(pl.UTF-8):	Statyczna biblioteka GNT
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static GNT library.
 
+%description static -l pl.UTF-8
+Statyczna biblioteka GNT.
+
 %package apidocs
 Summary:	GNT API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki GNT
 Group:		Documentation
 Requires:	gtk-doc-common
 BuildArch:	noarch
 
 %description apidocs
 GNT API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki GNT.
 
 %prep
 %setup -q
