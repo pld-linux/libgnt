@@ -16,6 +16,7 @@ BuildRequires:	ncurses-ext-devel
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.7
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
@@ -51,9 +52,7 @@ Static GNT library.
 Summary:	GNT API documentation
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 GNT API documentation.
