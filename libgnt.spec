@@ -1,17 +1,17 @@
 Summary:	The GLib Ncurses Toolkit
 Summary(pl.UTF-8):	Biblioteka GLib Ncurses Toolkit
 Name:		libgnt
-Version:	2.14.2
+Version:	2.14.3
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://downloads.sourceforge.net/pidgin/%{name}-%{version}.tar.xz
-# Source0-md5:	1af8741ebd551d286586acdf39c837e4
+# Source0-md5:	15c5e934fc5dec533a6d974639b54291
 URL:		https://keep.imfreedom.org/libgnt/libgnt
 BuildRequires:	glib2-devel >= 1:2.16.0
 BuildRequires:	gtk-doc
 BuildRequires:	libxml2-devel >= 1:2.6.0
-BuildRequires:	meson >= 0.41.0
+BuildRequires:	meson >= 0.44.0
 BuildRequires:	ncurses-devel
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	ninja
