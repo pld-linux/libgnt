@@ -1,0 +1,37 @@
+diff -r d3ad72913471 meson.build
+--- a/meson.build	Sat Sep 25 22:56:33 2021 -0500
++++ b/meson.build	Sat Sep 30 13:41:27 2023 +0200
+@@ -184,18 +201,22 @@
+ ]
+ 
+ # Check for Python headers
+-python_dep = disabler()
+-if get_option('python2')
+-	python_dep = dependency('python2', required : false)
+-	if not python_dep.found()
+-		python_dep = dependency('python-2.7', required : false)
++_PYTHONS = [
++	['python-3.10-embed', '>=3.10'],
++	['python-3.9-embed', '>=3.9'],
++	['python-3.8-embed', '>=3.8'],
++	['python3-embed', '>=3.8'],
++	['python3', '>=3.8'],
++	['python-3.7', '>=3.7'],
++	['python-3.7m', '>=3.7'],
++]
++foreach _PYTHON : _PYTHONS
++	python_dep = dependency(_PYTHON[0], version : _PYTHON[1], required: false)
++	if python_dep.found()
++		break
+ 	endif
+-
+-	if not python_dep.found()
+-		error('failed to find python')
+-	endif
+-endif
+-gnt_config.set('USE_PYTHON', get_option('python2'))
++endforeach
++gnt_config.set('USE_PYTHON', python_dep.found())
+ 
+ configure_file(output : 'gntconfig.h',
+     configuration : gnt_config)
