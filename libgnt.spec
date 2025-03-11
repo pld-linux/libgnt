@@ -2,7 +2,7 @@ Summary:	The GLib Ncurses Toolkit
 Summary(pl.UTF-8):	Biblioteka GLib Ncurses Toolkit
 Name:		libgnt
 Version:	2.14.3
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://downloads.sourceforge.net/pidgin/%{name}-%{version}.tar.xz
@@ -82,7 +82,7 @@ Dokumentacja API biblioteki GNT.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P 0 -p1
 
 %{__sed} -i -e 's/ = library(/ = shared_library(/' wms/meson.build
 
