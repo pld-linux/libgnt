@@ -1,30 +1,26 @@
 Summary:	The GLib Ncurses Toolkit
 Summary(pl.UTF-8):	Biblioteka GLib Ncurses Toolkit
 Name:		libgnt
-Version:	2.14.4
-Release:	2
+Version:	2.15.0
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	https://downloads.sourceforge.net/pidgin/%{name}-%{version}-dev.tar.xz
-# Source0-md5:	29c8424a105d41541514d42e15bd46ec
-Patch0:		python3.patch
+Source0:	https://downloads.sourceforge.net/pidgin/%{name}-%{version}.tar.xz
+# Source0-md5:	ec64d5ab39d90f5abee5246709587a24
 URL:		https://keep.imfreedom.org/libgnt/libgnt
-BuildRequires:	glib2-devel >= 1:2.16.0
+BuildRequires:	glib2-devel >= 1:2.38.0
 BuildRequires:	gtk-doc
-BuildRequires:	libxml2-devel >= 1:2.6.0
-BuildRequires:	meson >= 0.44.0
+BuildRequires:	meson >= 1.9.0
 BuildRequires:	ncurses-devel
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
-BuildRequires:	python3-devel
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.16.0
-Requires:	libxml2 >= 1:2.6.0
+Requires:	glib2 >= 1:2.38.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,6 +44,9 @@ Summary:	Header files for GNT library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GNT
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.38.0
+Requires:	ncurses-devel
+Requires:	ncurses-ext-devel
 
 %description devel
 Header files for GNT library.
@@ -81,8 +80,7 @@ GNT API documentation.
 Dokumentacja API biblioteki GNT.
 
 %prep
-%setup -q -n %{name}-%{version}-dev
-%patch -P 0 -p1
+%setup -q
 
 %{__sed} -i -e 's/ = library(/ = shared_library(/' wms/meson.build
 
